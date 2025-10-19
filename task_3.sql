@@ -1,4 +1,5 @@
+-- Use the database (replace with actual name if needed)
+USE alx_book_store;
+
 -- List all tables in the database
-SELECT TABLE_NAME
-FROM INFORMATION_SCHEMA.TABLES
-WHERE TABLE_SCHEMA = DATABASE();
+SHOW TABLES;

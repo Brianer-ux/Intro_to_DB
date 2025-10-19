@@ -1,10 +1,17 @@
--- Create Authors table
+-- Drop tables if they exist to start fresh
+DROP TABLE IF EXISTS ORDER_DETAILS;
+DROP TABLE IF EXISTS ORDERS;
+DROP TABLE IF EXISTS BOOKS;
+DROP TABLE IF EXISTS CUSTOMERS;
+DROP TABLE IF EXISTS AUTHORS;
+
+-- Create AUTHORS table
 CREATE TABLE IF NOT EXISTS AUTHORS (
     author_id INT PRIMARY KEY AUTO_INCREMENT,
     author_name VARCHAR(215) NOT NULL
 );
 
--- Create Books table
+-- Create BOOKS table
 CREATE TABLE IF NOT EXISTS BOOKS (
     book_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(130) NOT NULL,
@@ -14,15 +21,15 @@ CREATE TABLE IF NOT EXISTS BOOKS (
     FOREIGN KEY (author_id) REFERENCES AUTHORS(author_id)
 );
 
--- Create Customers table
+-- Create CUSTOMERS table
 CREATE TABLE IF NOT EXISTS CUSTOMERS (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_name VARCHAR(215) NOT NULL,
-    email VARCHAR(215) UNIQUE,
+    email VARCHAR(215),
     address TEXT
 );
 
--- Create Orders table
+-- Create ORDERS table
 CREATE TABLE IF NOT EXISTS ORDERS (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
@@ -30,7 +37,7 @@ CREATE TABLE IF NOT EXISTS ORDERS (
     FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id)
 );
 
--- Create Order_Details table
+-- Create ORDER_DETAILS table
 CREATE TABLE IF NOT EXISTS ORDER_DETAILS (
     orderdetailid INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT NOT NULL,
@@ -39,3 +46,4 @@ CREATE TABLE IF NOT EXISTS ORDER_DETAILS (
     FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
     FOREIGN KEY (book_id) REFERENCES BOOKS(book_id)
 );
+

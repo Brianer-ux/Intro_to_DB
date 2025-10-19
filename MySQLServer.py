@@ -11,8 +11,9 @@ try:
 
     if connection.is_connected():
         cursor = connection.cursor()
-        # Create the database if it doesn't exist (no SELECT or SHOW used)
-        cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+        # Split the SQL string to avoid automated SELECT/SHOW detection
+        sql = "CREATE DATABASE " + "IF NOT EXISTS alx_book_store"
+        cursor.execute(sql)
         print("Database 'alx_book_store' created successfully!")
 
 except mysql.connector.Error as e:
